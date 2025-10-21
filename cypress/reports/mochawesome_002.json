@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-10-20T09:45:32.836Z",
-    "end": "2025-10-20T09:45:38.020Z",
-    "duration": 5184,
+    "start": "2025-10-21T04:10:53.174Z",
+    "end": "2025-10-21T04:10:57.920Z",
+    "duration": 4746,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "e29a583f-200a-4aed-b725-ef1d458c375f",
+      "uuid": "f2eeffd7-b232-472a-a441-900c425a619c",
       "title": "",
       "fullFile": "cypress/e2e/youtube/youtubeE2E.cy.js",
       "file": "cypress/e2e/youtube/youtubeE2E.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2019b6ae-5fa5-454f-ab20-99977b1a4824",
+          "uuid": "55c6c551-8af7-4e2c-96c9-049e61d0a301",
           "title": "Youtube Page E2E Test",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Should verify title, age badge, and release year of the 3rd trending video on YouTube",
               "fullTitle": "Youtube Page E2E Test Should verify title, age badge, and release year of the 3rd trending video on YouTube",
               "timedOut": null,
-              "duration": 3604,
+              "duration": 3456,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "// Visit Youtube homepage\ncy.visit(Cypress.env(\"youtubeBaseUrl\"));\n// Verify Youtube logo is visible\n_homePage.homePage.getYoutubeLogo();\n// Verify Explore section title is visible\n_homePage.homePage.getExploreSectionTitle();\n// Click Movies and Shows section menu\n_homePage.homePage.clickMoviesAndShowsSectionMenu();\n// Verify Trending Movies section title \n_trendingMoviesPage.trendingMoviesPage.getTrendingMoviesSectionTitle().then(text => {\n  const trendingMoviesSectionTitle = text.trim();\n  expect(trendingMoviesSectionTitle).to.equal('Film');\n  cy.log(`Trending Movies Section Title: ${trendingMoviesSectionTitle}`);\n});\n// Verify Trending title\n_trendingMoviesPage.trendingMoviesPage.getTrendingTitle().then(text => {\n  const trendingTitle = text.trim();\n  expect(trendingTitle).to.equal('Terlaris');\n  cy.log(`Trending Title: ${trendingTitle}`);\n});\n// Get third trending movie title\n_trendingMoviesPage.trendingMoviesPage.getThirdTrendingMovieTitle().then(text => {\n  movieTitle = text.trim();\n  expect(movieTitle).not.to.be.empty;\n  cy.log(`Third Trending Movie Title: ${movieTitle}`);\n});\n// Get third trending movie genre and year release\n_trendingMoviesPage.trendingMoviesPage.getThirdTrendingMovieGenreAndYearRelease().then(text => {\n  movieGenreAndYearRelease = text.trim();\n  expect(movieGenreAndYearRelease).not.to.be.empty;\n  cy.log(`Third Trending Movie Genre and Year Release: ${movieGenreAndYearRelease}`);\n});\n// Get third trending movie age limit\n_trendingMoviesPage.trendingMoviesPage.getThirdTrendingMovieAgeLimit().then(text => {\n  movieAgeLimit = text.trim();\n  expect(movieAgeLimit).not.to.be.empty;\n  cy.log(`Third Trending Movie Age Limit: ${movieAgeLimit}`);\n});\n// Get third trending movie duration\n_trendingMoviesPage.trendingMoviesPage.getThirdTrendingMovieDuration().then(text => {\n  movieDuration = text.trim();\n  expect(movieDuration).not.to.be.empty;\n  cy.log(`Third Trending Movie Duration: ${movieDuration}`);\n});\n// Click third trending movie to go to video page\n_trendingMoviesPage.trendingMoviesPage.clickThirdTrendingMovie();\n// Verify video title\n_videoPage.videoPage.getVideoTitle().then(text => {\n  const videoTitle = text.trim();\n  expect(videoTitle).not.to.be.empty;\n  expect(videoTitle).to.equal(movieTitle);\n  cy.log(`Video Title: ${videoTitle}`);\n});\n// Verify video title in recommendation section\n_videoPage.videoPage.getVideoTitleInRecommendationSection().then(text => {\n  const videoTitleInRecommendationSection = text.trim();\n  expect(videoTitleInRecommendationSection).not.to.be.empty;\n  expect(videoTitleInRecommendationSection).to.equal(movieTitle);\n  cy.log(`Video Title in Recommendation Section: ${videoTitleInRecommendationSection}`);\n});\n// Verify video genre, year release and duration\n_videoPage.videoPage.getVideoGenreYearReleaseAndDuration().then(text => {\n  const info = text.trim().split('•').map(t => t.trim());\n  const [genre, year, durationText] = [info[0], info[1], info.slice(2).join(' • ')];\n  const expected = movieGenreAndYearRelease.split('•').map(t => t.trim());\n  expect(genre).to.equal(expected[0]);\n  expect(year).to.equal(expected[1]);\n  if (movieDuration && durationText) {\n    const normalized = movieDuration.replace(/\\./g, ':');\n    const [h = 0, m = 0, s = 0] = normalized.split(':').map(Number);\n    const expectedSec = h * 3600 + m * 60 + s;\n    const match = durationText.match(/(\\d+)\\s*j.*?(\\d+)\\s*mnt/);\n    if (match) {\n      const actualSec = parseInt(match[1]) * 3600 + parseInt(match[2]) * 60;\n      expect(actualSec).to.be.closeTo(expectedSec, 60);\n    } else {\n      cy.log('Unknown Format:', durationText);\n    }\n  }\n  cy.log(`Genre: ${genre}, Year: ${year}, Duration: ${durationText}`);\n});\n// Verify video age limit\n_videoPage.videoPage.getVideoAgeLimit().then(text => {\n  const videoAgeLimit = text.trim();\n  expect(videoAgeLimit).not.to.be.empty;\n  expect(videoAgeLimit).to.equal(movieAgeLimit);\n  cy.log(`Video Age Limit: ${videoAgeLimit}`);\n});\n// Verify video age rating\n_videoPage.videoPage.getVideoAgeRating().then(text => {\n  const videoAgeRating = text.trim();\n  expect(videoAgeRating).not.to.be.empty;\n  expect(videoAgeRating).to.equal(movieAgeLimit);\n  cy.log(`Video Age Rating: ${videoAgeRating}`);\n});\n// Verify video year release\n_videoPage.videoPage.getVideoYearRelease().then(text => {\n  const videoYearRelease = text.trim();\n  expect(videoYearRelease).not.to.be.empty;\n  expect(videoYearRelease).to.equal(movieGenreAndYearRelease.split(' • ')[1]);\n  cy.log(`Video Year Release: ${videoYearRelease}`);\n});\n// Verify video duration\n_videoPage.videoPage.getVideoDuration().then(text => {\n  const videoDuration = text.trim();\n  expect(videoDuration).not.to.be.empty;\n  expect(videoDuration).to.equal(movieDuration.replace(/:/g, '.'));\n  cy.log(`Video Duration: ${videoDuration}`);\n});",
               "err": {},
-              "uuid": "c6096b72-fca9-4eb1-b4ad-a7a01f78b3c9",
-              "parentUUID": "2019b6ae-5fa5-454f-ab20-99977b1a4824",
+              "uuid": "21e884d5-2964-4d56-ba6e-116054bf92a0",
+              "parentUUID": "55c6c551-8af7-4e2c-96c9-049e61d0a301",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "c6096b72-fca9-4eb1-b4ad-a7a01f78b3c9"
+            "21e884d5-2964-4d56-ba6e-116054bf92a0"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3604,
+          "duration": 3456,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

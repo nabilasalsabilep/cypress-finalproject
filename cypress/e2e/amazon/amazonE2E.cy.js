@@ -1,6 +1,7 @@
 require('cypress-xpath');
 
 import { homePage } from '../../support/page-object/amazon/homePage';
+import { searchResultPage } from '../../support/page-object/amazon/searchResultPage';
 import { cartPage } from '../../support/page-object/amazon/cartPage';
 
 describe('Amazon Page E2E Test', () => {
@@ -22,21 +23,24 @@ describe('Amazon Page E2E Test', () => {
         homePage.enterSearchKeyword('chair');
         homePage.clickSearchButton();
 
+        // Sort search results by Price: Low to High
+        searchResultPage.sortByPriceHightToLow();
+
         // Get first product name and price in search results
-        homePage.getFirstProductNameInSearchResults().then((text) => {
+        searchResultPage.getFirstProductNameInSearchResults().then((text) => {
             productName = text.trim();
             expect (productName).not.to.be.empty;
             cy.log(`Product Name: ${productName}`);
         });
 
-        homePage.getFirstProductPriceInSearchResults().then((text) => {
+        searchResultPage.getFirstProductPriceInSearchResults().then((text) => {
             productPrice = text.trim().replace(/(\$|IDR|Rp|\s)/g, '');
             expect (productPrice).not.to.be.empty;
             cy.log(`Product Price: ${productPrice}`);
         });
 
         // Add first product to cart
-        homePage.clickAddToCartButton();
+        searchResultPage.clickAddToCartButton();
 
         // Go to cart and verify cart count
         homePage.clickCartMenu();

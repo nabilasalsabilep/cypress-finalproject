@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-10-20T09:44:08.931Z",
-    "end": "2025-10-20T09:45:09.906Z",
-    "duration": 60975,
+    "start": "2025-10-21T04:09:47.850Z",
+    "end": "2025-10-21T04:10:29.165Z",
+    "duration": 41315,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "a67b33b4-1756-464f-831e-36acb359d8f3",
+      "uuid": "3e168810-e7ac-4472-b601-d70dc5b0b340",
       "title": "",
       "fullFile": "cypress/e2e/agoda/agodaE2E.cy.js",
       "file": "cypress/e2e/agoda/agodaE2E.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "25af9a1b-20a9-4d07-a79a-c6967a56ea85",
+          "uuid": "c571e16c-bd81-4d8b-8278-dc48fde4684a",
           "title": "Agoda Flight Booking E2E Test",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Should book a flight successfully from search to payment page",
               "fullTitle": "Agoda Flight Booking E2E Test Should book a flight successfully from search to payment page",
               "timedOut": null,
-              "duration": 58924,
+              "duration": 39882,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "// Visit Agoda homepage\ncy.visit(Cypress.env(\"agodaBaseUrl\"));\n// Verify homepage is loaded\n_homePage.homePage.getWelcomeMessage().should(\"eq\", \"See the world for less\");\n// Navigate to Flight tab\n_homePage.homePage.clickFlightTab();\n// Close cookie consent popup if it appears\n_homePage.homePage.clickCloseCookieButton();\n// Fill in flight search details (pakai flightData)\n_flightsTabPage.flightsTabPage.searchFlyingFrom(flightData.departureFrom);\n_flightsTabPage.flightsTabPage.searchFlyingTo(flightData.arrivalTo);\nconst tomorrowDate = _flightsTabPage.flightsTabPage.getTomorrowDate();\n_flightsTabPage.flightsTabPage.setDepartureDate(tomorrowDate);\n_flightsTabPage.flightsTabPage.getDepartureDateDescription().then(text => {\n  departureDate = text.trim();\n  departureDate = departureDate.replace(/(\\d{1,2})\\s(\\w{3})\\s(\\d{4})/, '$2 $1, $3');\n});\nconst departureDateDesc = _flightsTabPage.flightsTabPage.getDepartureDateDescription();\n_flightsTabPage.flightsTabPage.setOccupancy();\n_flightsTabPage.flightsTabPage.clickSearchFlightsButton();\n// Verify flight search results page is loaded\n_flightSearchListPage.flightSearchListPage.getFlightSearchListTitle().should(\"have.text\", \"Departure to \" + flightData.arrivalTo);\n// Sort flights by departure time (early to late)\n_flightSearchListPage.flightSearchListPage.sortByDepartureEarlyToLate();\n// Get all data from the first flight option\n_flightSearchListPage.flightSearchListPage.getFirstFlightOption().then(text => {\n  flightName = text.trim();\n  cy.log(\"Flight Name: \" + flightName);\n});\n_flightSearchListPage.flightSearchListPage.getFirstFlightDepartureTime().then($departureTime => {\n  departureTime = $departureTime;\n  departureTime24h = _flightSearchListPage.flightSearchListPage.convertTo24Hour(departureTime);\n  cy.log(\"Departure Time: \" + departureTime);\n});\n_flightSearchListPage.flightSearchListPage.getFirstFlightArrivalTime().then($arrivalTime => {\n  arrivalTime = $arrivalTime;\n  arrivalTime24h = _flightSearchListPage.flightSearchListPage.convertTo24Hour(arrivalTime);\n  cy.log(\"Arrival Time: \" + arrivalTime);\n});\n_flightSearchListPage.flightSearchListPage.getFirstFlightDepartureCode().then(text => {\n  departureCode = text.trim();\n});\n_flightSearchListPage.flightSearchListPage.getFirstFlightArrivalCode().then(text => {\n  arrivalCode = text.trim();\n});\n// Select the first flight option\n_flightSearchListPage.flightSearchListPage.clickExpandFlightDetails();\n_flightSearchListPage.flightSearchListPage.clickSelectFirstFlight();\n// Verify customer information page is loaded\n_customerInformationPage.customerInformationPage.getFirstStepperName().should(\"have.text\", \"Customer information\");\n_customerInformationPage.customerInformationPage.verifyFirstStepperNameIsActive();\n// Get price details from Customer Information Page\n_customerInformationPage.customerInformationPage.getInitialPrice().then(text => {\n  initialPrice = text.trim();\n  cy.log(\"Initial Price: \" + initialPrice);\n});\n_customerInformationPage.customerInformationPage.getBaseFare().then(text => {\n  baseFare = text.trim();\n  cy.log(\"Initial Price: \" + baseFare);\n});\n_customerInformationPage.customerInformationPage.getTaxesAndFees().then(text => {\n  taxesAndFee = text.trim();\n  cy.log(\"Initial Price: \" + taxesAndFee);\n});\n_customerInformationPage.customerInformationPage.getDiscountAmount().then(text => {\n  discountAmount = text.trim();\n  cy.log(\"Discount Amount: \" + discountAmount);\n});\n_customerInformationPage.customerInformationPage.getTotalPrice().then(text => {\n  totalPrice = text.trim();\n  cy.log(\"Price After Discount: \" + totalPrice);\n});\n// Fill in contact information using customerData\n_customerInformationPage.customerInformationPage.enterContactFirstName(customerData.contactFirstName);\n_customerInformationPage.customerInformationPage.enterContactLastName(customerData.contactLastName);\n_customerInformationPage.customerInformationPage.enterContactEmail(customerData.contactEmail);\n_customerInformationPage.customerInformationPage.selectContactCountryOfResidence(customerData.country);\n_customerInformationPage.customerInformationPage.enterContactPhoneNumberCountryCode(customerData.countryCode);\n_customerInformationPage.customerInformationPage.enterContactPhoneNumber(customerData.contactPhoneNumber);\n// Fill in customer information using customerData\n_customerInformationPage.customerInformationPage.selectFemaleGenderForPassenger();\n_customerInformationPage.customerInformationPage.enterPassengerFirstAndMiddleName(customerData.passengerFirstAndMiddleName);\n_customerInformationPage.customerInformationPage.enterPassengerLastName(customerData.passengerLastName);\n_customerInformationPage.customerInformationPage.enterPassengerDateOfBirth(customerData.passengerDayOfBirth, customerData.passengerYearOfBirth);\n_customerInformationPage.customerInformationPage.selectPassengerNationality(customerData.country);\n_customerInformationPage.customerInformationPage.selectTravelProtectionNoOption();\n_customerInformationPage.customerInformationPage.clickContinueToPaymentButton();\n// Verify popup to confirm no travel protection\n_customerInformationPage.customerInformationPage.verifyPopUpConformationToUpgradeSupportLevelIsVisible();\n_customerInformationPage.customerInformationPage.clickPopUpConformationToUpgradeSupportLevelNoThanksButton();\n// Verify payment page is loaded\n_paymentInformationPage.paymentInformationPage.getSecondStepperName().should(\"have.text\", \"Payment information\");\n_paymentInformationPage.paymentInformationPage.verifySecondStepperNameIsActive();\n// Verify summary details on payment page\n_paymentInformationPage.paymentInformationPage.getSummaryFlightName().then(text => {\n  expect(text.trim()).to.eq(flightName);\n});\n_paymentInformationPage.paymentInformationPage.getSummaryDepartureDate().then(text => {\n  expect(text.trim()).to.eq(`Depart - ${departureDate}`);\n});\n_paymentInformationPage.paymentInformationPage.getSummaryDepartureTime().then(text => {\n  expect(text.trim()).to.eq(departureCode + ' ' + departureTime24h);\n});\n_paymentInformationPage.paymentInformationPage.getSummaryArrivalTime().then(text => {\n  expect(text.trim()).to.eq(arrivalCode + ' ' + arrivalTime24h);\n});\n_paymentInformationPage.paymentInformationPage.getInitialPrice().then(text => {\n  expect(text.trim()).to.eq(initialPrice);\n});\n_paymentInformationPage.paymentInformationPage.getBaseFare().then(text => {\n  expect(text.trim()).to.eq(baseFare);\n});\n_paymentInformationPage.paymentInformationPage.getTaxesAndFees().then(text => {\n  expect(text.trim()).to.eq(taxesAndFee);\n});\n_paymentInformationPage.paymentInformationPage.getDiscountPrice().then(text => {\n  expect(text.trim()).to.eq(discountAmount);\n});\n_paymentInformationPage.paymentInformationPage.getTotalPrice().then(text => {\n  expect(text.trim()).to.eq(totalPrice);\n});\n// Verify Pay Now button is visible\n_paymentInformationPage.paymentInformationPage.verifyPayNowButtonIsVisible();\n// Verify contact details preview\n_paymentInformationPage.paymentInformationPage.getContactDetailsSection().then(text => {\n  expect(text.trim()).to.eq(\"Contact details\");\n});\n_paymentInformationPage.paymentInformationPage.getContactNamePreview().then(text => {\n  const expectedName = `${customerData.contactFirstName} ${customerData.contactLastName}`;\n  expect(text.trim()).to.eq(expectedName);\n});\n_paymentInformationPage.paymentInformationPage.getContactEmailPreview().then(text => {\n  expect(text.trim()).to.eq(customerData.contactEmail);\n});\n_paymentInformationPage.paymentInformationPage.getContactPhonePreview().then(text => {\n  expect(text.trim()).to.eq(`+${customerData.countryCode} ${customerData.contactPhoneNumber}`);\n});\n_paymentInformationPage.paymentInformationPage.getPassengerDetailsSection().then(text => {\n  expect(text.trim()).to.eq(\"Passenger details\");\n});\n_paymentInformationPage.paymentInformationPage.getPassengerNamePreview().then(text => {\n  const expectedPassengerName = `${customerData.passengerFirstAndMiddleName} ${customerData.passengerLastName}`;\n  expect(text.trim()).to.eq(expectedPassengerName);\n});",
               "err": {},
-              "uuid": "f221c259-bb27-4366-8818-7a162084c27e",
-              "parentUUID": "25af9a1b-20a9-4d07-a79a-c6967a56ea85",
+              "uuid": "52788123-0335-4a14-9e4d-bb50febee9e2",
+              "parentUUID": "c571e16c-bd81-4d8b-8278-dc48fde4684a",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f221c259-bb27-4366-8818-7a162084c27e"
+            "52788123-0335-4a14-9e4d-bb50febee9e2"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 58924,
+          "duration": 39882,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

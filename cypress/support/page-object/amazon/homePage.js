@@ -21,21 +21,6 @@ class HomePage {
         });
     }
 
-    getFirstProductNameInSearchResults() {
-        cy.xpath(homePageLocators.firstProductNameInSearchResults, { timeout: 60000 }).should('be.visible');
-        return cy.xpath(homePageLocators.firstProductNameInSearchResults).invoke('text');
-    }
-
-    getFirstProductPriceInSearchResults() {
-        cy.xpath(homePageLocators.firstProductPriceInSearchResults, { timeout: 60000 });
-        return cy.xpath(homePageLocators.firstProductPriceInSearchResults).invoke('text');
-    }
-
-    clickAddToCartButton() {
-        cy.wait(2000); 
-        cy.xpath(homePageLocators.buttonAddToCart).click();
-    }
-
     clickCartMenu() {
         cy.wait(2000);
         cy.xpath(homePageLocators.cartMenu).click();
