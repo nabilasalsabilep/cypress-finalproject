@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-10-20T09:45:13.022Z",
+    "end": "2025-10-20T09:45:30.503Z",
+    "duration": 17481,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "22c514f1-38a5-499a-a36f-ff51fc9a7331",
+      "title": "",
+      "fullFile": "cypress/e2e/amazon/amazonE2E.cy.js",
+      "file": "cypress/e2e/amazon/amazonE2E.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ab6bf389-d0d7-4eff-a480-91c629b858b0",
+          "title": "Amazon Page E2E Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should load Amazon page and add to cart a product",
+              "fullTitle": "Amazon Page E2E Test Should load Amazon page and add to cart a product",
+              "timedOut": null,
+              "duration": 15505,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Visit Amazon homepage\ncy.visit(Cypress.env(\"amazonBaseUrl\"));\n// Verify Amazon logo is visible\n_homePage.homePage.getAmazonLogo();\n_homePage.homePage.dismissDeliverToToastIfVisible();\n_homePage.homePage.enterSearchKeyword('chair');\n_homePage.homePage.clickSearchButton();\n// Get first product name and price in search results\n_homePage.homePage.getFirstProductNameInSearchResults().then(text => {\n  productName = text.trim();\n  expect(productName).not.to.be.empty;\n  cy.log(`Product Name: ${productName}`);\n});\n_homePage.homePage.getFirstProductPriceInSearchResults().then(text => {\n  productPrice = text.trim().replace(/(\\$|IDR|Rp|\\s)/g, '');\n  expect(productPrice).not.to.be.empty;\n  cy.log(`Product Price: ${productPrice}`);\n});\n// Add first product to cart\n_homePage.homePage.clickAddToCartButton();\n// Go to cart and verify cart count\n_homePage.homePage.clickCartMenu();\n_homePage.homePage.getCartCount().then(cartCount => {\n  expect(cartCount).to.equal('1');\n});\n// Verify product details in cart\n_cartPage.cartPage.getCartTitle();\n_cartPage.cartPage.getFirstProductNameInCart(productName).then(nameInCart => {\n  expect(nameInCart).to.contain(productName);\n});\n_cartPage.cartPage.getFirstProductPriceInCart(productPrice).then(priceInCart => {\n  priceInCart = priceInCart.trim().replace(/(\\$|IDR|Rp|\\s)/g, '');\n  expect(priceInCart).to.equal(productPrice);\n});\n_cartPage.cartPage.getFirstProductQtyInCart().then(qty => {\n  expect(qty).to.equal('1');\n});",
+              "err": {},
+              "uuid": "4f7081d9-8673-4701-8bc6-ca830fb2c4f4",
+              "parentUUID": "ab6bf389-d0d7-4eff-a480-91c629b858b0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4f7081d9-8673-4701-8bc6-ca830fb2c4f4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15505,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}

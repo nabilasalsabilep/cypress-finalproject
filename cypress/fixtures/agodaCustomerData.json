@@ -1,0 +1,15 @@
+{
+    "contactFirstName": "User",
+    "contactLastName": "Agoda",
+    "contactEmail": "Agodausertester@mail.co",
+    "country": "Indonesia",
+    "countryCode": "62",
+    "contactPhoneNumber": "81234567890",
+    "passengerFirstAndMiddleName": "Sarah Ann",
+    "passengerLastName": "Smith",
+    "passengerDayOfBirth": "15",
+    "passengerYearOfBirth": "1990",
+    "passportNumber": "A12345678",
+    "expiryDay": "20",
+    "expiryYear": "2030"
+}
