@@ -1,4 +1,4 @@
-# ✈️ Final Project - Cypress
+# Final Project - Cypress
 
 The objective is to automate user flows across multiple real-world websites — including **Agoda**, **Amazon**, and **YouTube** — while applying best practices such as Page Object Model (POM), environment variables, and automated reporting.
 
@@ -40,58 +40,8 @@ Automate trending video validation on [youtube.com](https://www.youtube.com) wit
 - Verify:
   - ✅ The **video title** and **channel name** on the video page match the data displayed on the trending page
 
----
 
-## 📂 Project Structure
-cypress
-├── downloads/                     # Stores downloaded files during tests
-│
-├── e2e/                           # Contains all end-to-end (E2E) test scripts
-│   ├── agoda/
-│   │   └── agodaE2E.cy.js         # Agoda E2E test script
-│   ├── amazon/
-│   │   └── amazonE2E.cy.js        # Amazon E2E test script
-│   ├── youtube/
-│   │   └── youtubeE2E.cy.js       # YouTube E2E test script
-│   │
-│   └── fixtures/                  # Test data files used across test cases
-│       ├── agodaCustomerData.json
-│       ├── example.json
-│       ├── flightInformationData.json
-│       ├── profile.json
-│       └── users.json
-│
-├── reports/                       # Test report files generated after execution
-│   ├── assets/
-│   ├── mochawesome_001.html
-│   ├── mochawesome_001.json
-│   ├── mochawesome_002.html
-│   ├── mochawesome_002.json
-│   ├── mochawesome.html
-│   └── mochawesome.json
-│
-├── screenshots/                   # Captures screenshots of failed or passed tests
-│
-├── support/                       # Helper files, locators, and page object models
-│   ├── locators/
-│   │   ├── agoda/
-│   │   ├── amazon/
-│   │   └── youtube/
-│   │
-│   ├── page-object/               # Page Object Model (POM) files for each project
-│   │   ├── agoda/
-│   │   ├── amazon/
-│   │   └── youtube/
-│   │
-│   ├── commands.js
-│   └── e2e.js
-│
-└── videos/                        # Test execution recordings (Cypress built-in)
-    ├── agoda/
-    ├── amazon/
-    └── youtube/
-
----
+---  
 
 ## 🧭 How to Run the Tests
 1. **Clone this repository:**
@@ -107,5 +57,5 @@ cypress
 5. **Run all tests in headless mode (CLI):**
    ```bash
    npx cypress run
-6. **View the test report:**
+6. **View the test report:**  
 Open the generated HTML report inside the cypress/reports folder.
